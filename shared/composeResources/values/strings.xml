@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_title">Modern KMP App</string>
+    <string name="click_me">Click me!</string>
+    <string name="greeting">Hello, %s!</string>
+    <string name="theme_settings">Theme Mode</string>
+    <string name="language_settings">Language</string>
+    <string name="system_mode">System</string>
+    <string name="light_mode">Light</string>
+    <string name="dark_mode">Dark</string>
+    <string name="english">English</string>
+    <string name="spanish">Español</string>
+    <string name="hindi">हिंदी</string>
+    <string name="french">Français</string>
+    <string name="german">Deutsch</string>
+</resources>

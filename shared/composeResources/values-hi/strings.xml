@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_title">आधुनिक केएमपी ऐप</string>
+    <string name="click_me">क्लिक करें!</string>
+    <string name="greeting">नमस्ते, %s!</string>
+    <string name="theme_settings">थीम मोड</string>
+    <string name="language_settings">भाषा</string>
+    <string name="system_mode">सिस्टम</string>
+    <string name="light_mode">लाइट</string>
+    <string name="dark_mode">डार्क</string>
+    <string name="english">अंग्रेज़ी (English)</string>
+    <string name="spanish">स्पैनिश (Español)</string>
+    <string name="hindi">हिंदी (Hindi)</string>
+    <string name="french">फ़्रेंच (Français)</string>
+    <string name="german">जर्मन (Deutsch)</string>
+</resources>
