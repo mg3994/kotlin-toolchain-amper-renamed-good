@@ -28,9 +28,11 @@ jobs:
         uses: actions/cache@v6
         with:
           path: |
-            ~/.cache/JetBrains/Kotlin
+            ~/.cache/JetBrains
+            ~/.kotlin
             ~/.gradle/caches
             ~/.gradle/wrapper
+            .gradle
           key: ${{ runner.os }}-kotlin-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-kotlin-
