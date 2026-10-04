@@ -180,7 +180,7 @@ private fun SettingsSection(
 
             Spacer(modifier = Modifier.height(2.dp))
 
-            // Language Selection using dynamic supportedLocales (similar to Flutter's supportedLocales)
+            // Language Selection
             Text(stringResource(Res.string.language_settings), style = MaterialTheme.typography.titleSmall)
             Row(
                 modifier = Modifier
@@ -188,11 +188,18 @@ private fun SettingsSection(
                     .horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                AppLocale.supportedLocales.forEach { appLocale ->
+                val languages = listOf(
+                    "en" to Res.string.english,
+                    "es" to Res.string.spanish,
+                    "hi" to Res.string.hindi,
+                    "fr" to Res.string.french,
+                    "de" to Res.string.german
+                )
+                languages.forEach { (langCode, stringRes) ->
                     FilterChip(
-                        selected = language == appLocale.code,
-                        onClick = { viewModel.setLanguage(appLocale.code) },
-                        label = { Text(stringResource(appLocale.labelRes)) }
+                        selected = language == langCode,
+                        onClick = { viewModel.setLanguage(langCode) },
+                        label = { Text(stringResource(stringRes)) }
                     )
                 }
             }

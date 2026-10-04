@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.util.Locale
 
 enum class ThemeMode {
     SYSTEM, LIGHT, DARK
@@ -66,6 +67,12 @@ class AppViewModel : ViewModel() {
     fun setLanguage(lang: String) {
         _language.update { lang }
         SettingsStorage.putString("language", lang)
-        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(lang))
+        try {
+            val locale = Locale.forLanguageTag(lang)
+            Locale.setDefault(locale)
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(lang))
+        } catch (e: Exception) {
+            // Fallback
+        }
     }
 }
