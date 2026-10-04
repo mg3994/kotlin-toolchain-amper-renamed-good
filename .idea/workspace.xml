@@ -11,10 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8020d266-4cd0-4134-84b9-27ed01921c67" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/module.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/module.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/src/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/App.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/src/AppViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/AppViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/LocalizationManager.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

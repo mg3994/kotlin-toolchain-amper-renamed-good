@@ -1,7 +1,9 @@
 package `in`.antinna.mgtn
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -25,6 +27,7 @@ import `in`.antinna.mgtn.resources.*
 fun App() {
     val viewModel = remember { AppViewModel() }
     val themeMode by viewModel.themeMode.collectAsState()
+    val themeColor by viewModel.themeColor.collectAsState()
     val language by viewModel.language.collectAsState()
 
     // Get active flavor configuration (Development, Staging, Production & Debug/Profile/Release)
@@ -38,8 +41,8 @@ fun App() {
         ThemeMode.DARK -> true
     }
 
-    // Material 3 ColorScheme generated from the active flavor's seed color
-    val seedColor = activeFlavor.defaultThemeSeedColor
+    // Material 3 ColorScheme generated from the selected theme color or flavor default
+    val seedColor = themeColor.getColor(activeFlavor.defaultThemeSeedColor)
     val colorScheme = if (darkTheme) {
         darkColorScheme(primary = seedColor)
     } else {
@@ -84,7 +87,7 @@ fun App() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Settings Card (Theme & Language)
+                // Settings Card (Theme Mode, Theme Color & Language)
                 ElevatedCard(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -92,9 +95,9 @@ fun App() {
                 ) {
                     Column(
                         modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                        verticalArrangement = Arrangement.spacedBy(14.dp)
                     ) {
-                        // Theme Selection
+                        // Theme Mode Selection
                         Text(stringResource(Res.string.theme_settings), style = MaterialTheme.typography.titleSmall)
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -120,7 +123,30 @@ fun App() {
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(4.dp))
+                        // Theme Color Selection (Swatches including Flavor Default)
+                        Text("Theme Color", style = MaterialTheme.typography.titleSmall)
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState()),
+                            horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            AppThemeColor.entries.forEach { colorOption ->
+                                val optionColor = colorOption.getColor(activeFlavor.defaultThemeSeedColor)
+                                val isSelected = themeColor == colorOption
+                                Surface(
+                                    modifier = Modifier
+                                        .size(36.dp)
+                                        .clickable { viewModel.setThemeColor(colorOption) },
+                                    shape = androidx.compose.foundation.shape.CircleShape,
+                                    color = optionColor,
+                                    border = if (isSelected) BorderStroke(3.dp, MaterialTheme.colorScheme.onSurface) else null,
+                                    tonalElevation = if (isSelected) 8.dp else 2.dp
+                                ) {}
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(2.dp))
 
                         // Language Selection
                         Text(stringResource(Res.string.language_settings), style = MaterialTheme.typography.titleSmall)
