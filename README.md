@@ -19,6 +19,9 @@ Run the project's tests with `./kotlin test`, or `./kotlin test -m <module>` for
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html), [Kotlin Toolchain](https://kotlin-toolchain.org/dev/), [Compose Multiplatform](https://kotlinlang.org/compose-multiplatform/).
 
+```
 
 git tag -a v1.0.1 -m "Release version 1.0.1"
+
 git push origin v1.0.1   
+```
