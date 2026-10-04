@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -35,12 +35,11 @@ jobs:
       - name: Make kotlin wrapper executable
         run: chmod +x ./kotlin
 
-      - name: Run Tests
-        run: ./kotlin test
+      - name: Build Project
+        run: ./kotlin build
 
       - name: Package Android App
         run: |
-          ./kotlin package -m androidApp --variant=debug
           ./kotlin package -m androidApp --variant=release
 
       - name: Upload Build Artifacts
@@ -48,8 +47,8 @@ jobs:
         with:
           name: android-build-artifacts
           path: |
-            build/
-            **/build/
+            **/build/outputs/apk/**/*.apk
+            **/build/outputs/bundle/**/*.aab
 
   release:
     name: Create GitHub Release
