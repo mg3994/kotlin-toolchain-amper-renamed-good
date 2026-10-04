@@ -23,6 +23,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          cache: gradle
 
       - name: Cache Kotlin Toolchain and Gradle
         uses: actions/cache@v6
@@ -30,10 +31,7 @@ jobs:
           path: |
             ~/.cache/JetBrains
             ~/.kotlin
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            .gradle
-          key: ${{ runner.os }}-kotlin-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/module.yaml') }}
+          key: ${{ runner.os }}-kotlin-${{ hashFiles('**/module.yaml') }}
           restore-keys: |
             ${{ runner.os }}-kotlin-
 
