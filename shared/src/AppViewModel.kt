@@ -1,5 +1,7 @@
 package `in`.antinna.mgtn
 
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -33,9 +35,6 @@ class AppViewModel : ViewModel() {
     fun setLanguage(lang: String) {
         _language.update { lang }
         SettingsStorage.putString("language", lang)
-    }
-
-    fun getString(key: String, vararg args: Any): String {
-        return LocalizationManager.get(_language.value, key, *args)
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(lang))
     }
 }

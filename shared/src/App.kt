@@ -14,9 +14,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.reload.DevelopmentEntryPoint
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 import `in`.antinna.mgtn.resources.Res
-import `in`.antinna.mgtn.resources.compose_multiplatform
+import `in`.antinna.mgtn.resources.*
 
 @Composable
 @Preview
@@ -65,7 +66,7 @@ fun App() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = viewModel.getString("app_title"),
+                        text = stringResource(Res.string.app_title),
                         style = MaterialTheme.typography.headlineMedium,
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -94,7 +95,7 @@ fun App() {
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         // Theme Selection
-                        Text(viewModel.getString("theme_settings"), style = MaterialTheme.typography.titleSmall)
+                        Text(stringResource(Res.string.theme_settings), style = MaterialTheme.typography.titleSmall)
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -102,19 +103,19 @@ fun App() {
                             FilterChip(
                                 selected = themeMode == ThemeMode.SYSTEM,
                                 onClick = { viewModel.setThemeMode(ThemeMode.SYSTEM) },
-                                label = { Text(viewModel.getString("system_mode")) },
+                                label = { Text(stringResource(Res.string.system_mode)) },
                                 modifier = Modifier.weight(1f)
                             )
                             FilterChip(
                                 selected = themeMode == ThemeMode.LIGHT,
                                 onClick = { viewModel.setThemeMode(ThemeMode.LIGHT) },
-                                label = { Text(viewModel.getString("light_mode")) },
+                                label = { Text(stringResource(Res.string.light_mode)) },
                                 modifier = Modifier.weight(1f)
                             )
                             FilterChip(
                                 selected = themeMode == ThemeMode.DARK,
                                 onClick = { viewModel.setThemeMode(ThemeMode.DARK) },
-                                label = { Text(viewModel.getString("dark_mode")) },
+                                label = { Text(stringResource(Res.string.dark_mode)) },
                                 modifier = Modifier.weight(1f)
                             )
                         }
@@ -122,7 +123,7 @@ fun App() {
                         Spacer(modifier = Modifier.height(4.dp))
 
                         // Language Selection
-                        Text(viewModel.getString("language_settings"), style = MaterialTheme.typography.titleSmall)
+                        Text(stringResource(Res.string.language_settings), style = MaterialTheme.typography.titleSmall)
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -132,27 +133,27 @@ fun App() {
                             FilterChip(
                                 selected = language == "en",
                                 onClick = { viewModel.setLanguage("en") },
-                                label = { Text(viewModel.getString("english")) }
+                                label = { Text(stringResource(Res.string.english)) }
                             )
                             FilterChip(
                                 selected = language == "es",
                                 onClick = { viewModel.setLanguage("es") },
-                                label = { Text(viewModel.getString("spanish")) }
+                                label = { Text(stringResource(Res.string.spanish)) }
                             )
                             FilterChip(
                                 selected = language == "hi",
                                 onClick = { viewModel.setLanguage("hi") },
-                                label = { Text(viewModel.getString("hindi")) }
+                                label = { Text(stringResource(Res.string.hindi)) }
                             )
                             FilterChip(
                                 selected = language == "fr",
                                 onClick = { viewModel.setLanguage("fr") },
-                                label = { Text(viewModel.getString("french")) }
+                                label = { Text(stringResource(Res.string.french)) }
                             )
                             FilterChip(
                                 selected = language == "de",
                                 onClick = { viewModel.setLanguage("de") },
-                                label = { Text(viewModel.getString("german")) }
+                                label = { Text(stringResource(Res.string.german)) }
                             )
                         }
                     }
@@ -161,7 +162,7 @@ fun App() {
                 Spacer(modifier = Modifier.weight(1f))
 
                 Button(onClick = { showContent = !showContent }) {
-                    Text(viewModel.getString("click_me"))
+                    Text(stringResource(Res.string.click_me))
                 }
 
                 AnimatedVisibility(showContent) {
@@ -179,7 +180,7 @@ fun App() {
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = viewModel.getString("greeting", greeting),
+                            text = stringResource(Res.string.greeting, greeting),
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.height(4.dp))
