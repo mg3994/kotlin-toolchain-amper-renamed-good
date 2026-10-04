@@ -34,4 +34,8 @@ class AppViewModel : ViewModel() {
         _language.update { lang }
         SettingsStorage.putString("language", lang)
     }
+
+    fun getString(key: String, vararg args: Any): String {
+        return LocalizationManager.get(_language.value, key, *args)
+    }
 }
