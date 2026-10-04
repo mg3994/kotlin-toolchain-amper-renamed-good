@@ -2,26 +2,20 @@ package `in`.antinna.mgtn
 
 import androidx.compose.ui.graphics.Color
 
-// --- Build Mode ---
-
 interface BuildModeInterface {
     val modeName: String
 }
 
-enum class BuildMode : BuildModeInterface {
-    DEBUG,
-    PROFILE,
-    RELEASE;
-
-    override val modeName: String get() = name.lowercase()
+enum class BuildMode(override val modeName: String) : BuildModeInterface {
+    DEBUG("debug"),
+    PROFILE("profile"),
+    RELEASE("release");
 
     companion object {
         var current: BuildMode = DEBUG
             internal set
     }
 }
-
-// --- Flavor ---
 
 interface FlavorInterface {
     val flavorName: String
@@ -33,46 +27,33 @@ interface FlavorInterface {
 
 enum class Flavor(
     override val flavorName: String,
-    private val customUrl: String? = null
-) : FlavorInterface {
-    DEVELOPMENT("development"),
-    STAGING("staging"),
-    PRODUCTION("production");
-
-    override val baseUrl: String
-        get() {
-            if (customUrl != null) return customUrl
-            return when (this) {
-                DEVELOPMENT -> "http://10.0.2.2:8080"
-                STAGING -> "https://staging.api.antinna.in"
-                PRODUCTION -> "https://api.antinna.in"
-            }
-        }
-
-    override val defaultThemeMode: ThemeMode
-        get() = when (this) {
-            DEVELOPMENT -> ThemeMode.SYSTEM
-            STAGING -> ThemeMode.SYSTEM
-            PRODUCTION -> ThemeMode.SYSTEM
-        }
-
-    override val defaultLocale: String
-        get() = "en"
-
+    override val baseUrl: String,
     override val defaultThemeSeedColor: Color
-        get() = when (this) {
-            DEVELOPMENT -> Color(0xFF2196F3) // Blue
-            STAGING -> Color(0xFF4CAF50)     // Green
-            PRODUCTION -> Color(0xFFFF9800)  // Orange
-        }
+) : FlavorInterface {
+    DEVELOPMENT(
+        flavorName = "development",
+        baseUrl = "http://10.0.2.2:8080",
+        defaultThemeSeedColor = Color(0xFF2196F3) // Blue
+    ),
+    STAGING(
+        flavorName = "staging",
+        baseUrl = "https://staging.api.antinna.in",
+        defaultThemeSeedColor = Color(0xFF4CAF50) // Green
+    ),
+    PRODUCTION(
+        flavorName = "production",
+        baseUrl = "https://api.antinna.in",
+        defaultThemeSeedColor = Color(0xFFFF9800) // Orange
+    );
+
+    override val defaultThemeMode: ThemeMode get() = ThemeMode.SYSTEM
+    override val defaultLocale: String get() = "en"
 
     companion object {
         var current: Flavor = DEVELOPMENT
             internal set
     }
 }
-
-// --- Flavor Config ---
 
 class FlavorConfig<F : FlavorInterface, B : BuildModeInterface>(
     val flavor: F,
