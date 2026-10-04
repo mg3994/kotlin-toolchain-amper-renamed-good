@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v6
+        uses: actions/setup-java@v7
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -33,7 +33,7 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
             .gradle
-          key: ${{ runner.os }}-kotlin-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-kotlin-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/module.yaml') }}
           restore-keys: |
             ${{ runner.os }}-kotlin-
 
@@ -48,22 +48,16 @@ jobs:
       - name: Make kotlin wrapper executable
         run: chmod +x ./kotlin
 
-#      - name: Run Tests
-#        run: ./kotlin test
-
-      - name: Build Project
-        run: ./kotlin build
-
-      - name: Package Android App
-        run: ./kotlin package -m androidApp --variant=release
+      - name: Build Android App (Debug and Release)
+        run: ./kotlin build --variant=debug --variant=release
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: android-build-artifacts
           path: |
-            **/*.apk
-            **/*.aab
+            build/
+            **/build/
           if-no-files-found: error
 
   release:
