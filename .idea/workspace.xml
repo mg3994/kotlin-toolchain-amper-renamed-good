@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8020d266-4cd0-4134-84b9-27ed01921c67" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.github/workflows/build_and_release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build_and_release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
